@@ -5,7 +5,7 @@
  * This triggers both data storage (Sheets) and email reporting.
  */
 
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby2sK5NUUTNH_IEps5eDc2-k6a0hKXqXDpCzMZI4EM633RgVJ17FAetqXCFJxu4KDQi0Q/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzQXhMEHzQ7SxxpVNNRMNA9WtXnNWHbliVFUv50vH3nJoW16Ti3He20YA4oXxdPCcvA8Q/exec";
 
 export interface QuizResultPayload {
     attemptId: string;
