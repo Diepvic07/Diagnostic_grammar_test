@@ -11,6 +11,10 @@ interface StudyPlanPageProps {
 export const StudyPlanPage: React.FC<StudyPlanPageProps> = ({ weakTopics, onContinue }) => {
     const { t } = useTranslation();
 
+    React.useEffect(() => {
+        document.title = "Grammar Study Plan";
+    }, []);
+
     return (
         <div className="study-plan-page">
             {/* Sticky Header with Blur */}

@@ -75,7 +75,7 @@ function doPost(e) {
 
         // 3. Send Email Report (if email provided)
         if (contents.student.email) {
-            sendStudentReport(contents.student, contents.score, contents.weakTopics, attemptId);
+            sendStudentReport(contents.student, contents.score, contents.weakTopics, attemptId, contents.studyPlanLink);
         }
 
         return ContentService.createTextOutput(JSON.stringify({
@@ -168,7 +168,7 @@ function isEmailUnsubscribed(doc, email) {
 /**
  * Send HTML Email to Student
  */
-function sendStudentReport(student, score, weakTopics, attemptId) {
+function sendStudentReport(student, score, weakTopics, attemptId, studyPlanLink = "#") {
     const doc = SpreadsheetApp.getActiveSpreadsheet();
 
     // 1. Check Blacklist
@@ -244,8 +244,7 @@ function sendStudentReport(student, score, weakTopics, attemptId) {
                 <p style="margin: 0 0 12px 0; font-size: 16px; color: #334155; font-family: 'Lexend', sans-serif;">
                     ⚠️ You have <strong>${remaining} more weak topics</strong> to review.
                 </p>
-                <!-- TODO: Replace with user's actual App URL -->
-                <a href="http://localhost:5173/?planId=${attemptId}" style="color: #1da1f2; font-weight: bold; text-decoration: none; font-size: 16px;">View Full Study Plan &rarr;</a>
+                <a href="${studyPlanLink}" style="color: #1da1f2; font-weight: bold; text-decoration: none; font-size: 16px;">View Full Study Plan &rarr;</a>
             </td>
         </tr>
         `;
@@ -352,7 +351,7 @@ function sendStudentReport(student, score, weakTopics, attemptId) {
          <tr>
             <td align="center" style="padding: 32px; border-top: 1px solid #f1f5f9; background-color: #ffffff;">
                 <p style="margin: 0 0 16px 0;">
-                    <a href="http://localhost:5173/?planId=${attemptId}" style="background-color: #1da1f2; color: #ffffff; text-decoration: none; padding: 12px 24px; border-radius: 24px; font-weight: bold; font-size: 16px; display: inline-block; font-family: 'Lexend', sans-serif; box-shadow: 0 4px 6px rgba(29, 161, 242, 0.2);">View Full Study Plan</a>
+                    <a href="${studyPlanLink}" style="background-color: #1da1f2; color: #ffffff; text-decoration: none; padding: 12px 24px; border-radius: 24px; font-weight: bold; font-size: 16px; display: inline-block; font-family: 'Lexend', sans-serif; box-shadow: 0 4px 6px rgba(29, 161, 242, 0.2);">View Full Study Plan</a>
                 </p>
                 <p style="font-size: 12px; color: #94a3b8; line-height: 1.5;">
                     © ${new Date().getFullYear()} eJOY English.<br/>
@@ -414,7 +413,12 @@ function testEmail() {
     Logger.log("Attempting to send email to: " + testStudent.email);
     // Use a dummy attempt ID for testing
     const dummyAttemptId = "test-attempt-id-12345";
-    sendStudentReport(testStudent, testScore, testTopics, dummyAttemptId);
+
+    // Test Link
+    // Test Link with VALID topic names
+    const testLink = "https://diepvic07.github.io/Diagnostic_grammar_test/?topics=Present%20tenses,The%20passive";
+
+    sendStudentReport(testStudent, testScore, testTopics, dummyAttemptId, testLink);
     Logger.log("Email function executed.");
 }
 

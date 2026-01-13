@@ -24,6 +24,11 @@ export const EmailRequestPage: React.FC<EmailRequestPageProps> = ({ onBack, onSu
 
     React.useEffect(() => {
         window.scrollTo(0, 0);
+        const originalTitle = document.title;
+        document.title = "Grammar Study Plan";
+        return () => {
+            document.title = originalTitle;
+        };
     }, []);
 
     const handleSubmit = (e: React.FormEvent) => {

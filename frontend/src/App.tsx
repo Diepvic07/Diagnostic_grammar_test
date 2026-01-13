@@ -110,40 +110,47 @@ function Main() {
     setCurrentPage('study-plan');
   };
 
-  // Expose test helper for Automation
-  // Expose test helper for Automation
   useEffect(() => {
+    // Expose test helper
     (window as any).fastTrackQuiz = () => {
+      // ... (existing helper logic) ...
       const mockResults: QuizResultsResponse = {
-        score: 42,
+        score: 0,
         totalQuestions: 50,
-        percentage: 84,
-        questions: Array(50).fill(null).map((_, i) => ({
-          id: `q${i}`,
-          questionText: `Mock Question ${i}`,
-          userAnswer: "A",
-          correctAnswer: "B", // Different answer
-          isCorrect: i % 2 === 0, // 50% correct
-          explanation: "Mock Explanation",
-          grammarTopic: `Topic ${i % 5}`, // 5 topics
-          topicNumber: 1
-        }))
+        percentage: 0,
+        questions: []
       };
       setQuizResults(mockResults);
       setCurrentPage('results');
-      console.log("Quiz Fast Tracked!");
     };
 
-    // Check for Plan ID in URL (Deep Linking)
-    // Legacy: This was for checking backend for past results. 
-    // For static site, we can't fetch by ID unless we query Google Sheets (which is async and complex for this scope)
-    // or if we passed encoded data. 
-    // For now, we will just log it or ignore.
+    // Check for "topics" in URL (Stateless Sharing)
     const params = new URLSearchParams(window.location.search);
-    const planId = params.get('planId');
-    if (planId) {
-      console.log("Loaded with plan ID:", planId);
-      // Potential future enhancement: fetch from Google Sheet via Apps Script based on ID
+    const topicsParam = params.get('topics');
+    if (topicsParam) {
+      // topics=Present tenses,Past tenses 1
+      const topicNames = topicsParam.split(',');
+      const mockQuestions = topicNames.map((name, index) => ({
+        id: `shared-${index}`,
+        questionText: "Shared Plan",
+        userAnswer: "",
+        correctAnswer: "",
+        isCorrect: false,
+        explanation: "",
+        grammarTopic: name.trim(),
+        topicNumber: 0
+      }));
+
+      // Construct a partial result that is sufficient for StudyPlanPage
+      const sharedResults: QuizResultsResponse = {
+        score: 0,
+        totalQuestions: 50,
+        percentage: 0,
+        questions: mockQuestions
+      };
+
+      setQuizResults(sharedResults);
+      setCurrentPage('study-plan');
     }
   }, []);
 
@@ -192,7 +199,8 @@ function Main() {
         responses: responses,
         studyPlan: weakTopics.map(t =>
           `Topic: ${t.name} | Book: ${t.bookReference} | Video: ${t.video ? t.video.url : 'N/A'}`
-        ).join('\n')
+        ).join('\n'),
+        studyPlanLink: `${window.location.origin}${window.location.pathname}?topics=${encodeURIComponent(weakTopics.map(t => t.name).join(','))}`
       };
 
       const success = await AnalyticsService.submitResults(payload);
