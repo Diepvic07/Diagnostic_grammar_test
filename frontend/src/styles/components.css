@@ -1,0 +1,286 @@
+/* Card Components */
+
+.card {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-soft);
+    transition: all var(--transition-fast);
+}
+
+.card:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.card-sm {
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+}
+
+.card-clickable {
+    cursor: pointer;
+}
+
+.card-clickable:hover {
+    transform: translateY(-2px);
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: var(--radius-full);
+    font-family: inherit;
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-button);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    line-height: 1.5;
+}
+
+.btn-primary {
+    background: var(--color-brand-blue);
+    color: var(--color-surface);
+    padding: 16px 32px;
+    min-height: 56px;
+    box-shadow: 0 4px 6px rgba(29, 161, 242, 0.2);
+}
+
+.btn-primary:hover {
+    background: var(--color-info-blue);
+    /* #0EA5E9 */
+    box-shadow: 0 4px 12px rgba(29, 185, 245, 0.3);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.btn-primary:disabled {
+    background: var(--color-border);
+    color: var(--color-text-secondary);
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+.btn-secondary {
+    background: var(--color-surface);
+    color: var(--color-brand-blue);
+    border: 2px solid var(--color-brand-blue);
+    padding: 14px 32px;
+    min-height: 56px;
+}
+
+.btn-secondary:hover {
+    background: var(--color-bg-selected);
+}
+
+/* Progress Bar */
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 9999px;
+    overflow: hidden;
+}
+
+.progress-bar__fill {
+    height: 100%;
+    background: var(--color-brand-blue);
+    border-radius: 9999px;
+    transition: width 0.5s ease-out;
+}
+
+/* Radio Option */
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--color-surface);
+    border: 2px solid var(--color-border);
+    border-radius: 12px;
+    padding: 16px;
+    min-height: auto;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.radio-option:hover {
+    border-color: #e2e8f0;
+}
+
+.radio-option.selected {
+    background: var(--color-bg-selected);
+    border-color: var(--color-brand-blue);
+}
+
+.radio-button {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #cbd5e1;
+    border-radius: 50%;
+    position: relative;
+    flex-shrink: 0;
+    transition: border-color var(--transition-fast);
+}
+
+.radio-option.selected .radio-button {
+    border-color: var(--color-brand-blue);
+}
+
+.radio-option.selected .radio-button::after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: var(--color-brand-blue);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform var(--transition-fast);
+}
+
+/* Badge */
+.badge {
+    display: inline-block;
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-semibold);
+    padding: 4px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.badge-priority {
+    background: var(--color-bg-incorrect);
+    color: var(--color-error-red);
+}
+
+.badge-success {
+    background: var(--color-bg-correct);
+    color: var(--color-success-green);
+}
+
+.badge-info {
+    background: var(--color-bg-info);
+    color: var(--color-info-blue);
+}
+
+/* Topic Tag */
+.topic-tag {
+    display: inline-block;
+    background: #F3F4F6;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-caption);
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 6px;
+}
+
+/* Answer Card */
+.answer-card {
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    margin: 8px 0;
+    box-shadow: var(--shadow-card);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.answer-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+}
+
+.answer-card--correct {
+    border-left: 4px solid var(--color-success-green);
+}
+
+.answer-card--incorrect {
+    border-left: 4px solid var(--color-error-red);
+}
+
+/* Language Selector */
+.language-selector {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 8px 12px;
+    min-width: 120px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.language-selector:hover {
+    border-color: var(--color-brand-blue);
+}
+
+.language-selector__flag {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+}
+
+.language-selector__text {
+    font-size: var(--font-size-body);
+    color: var(--color-text-primary);
+    flex: 1;
+}
+
+.language-selector__icon {
+    width: 16px;
+    height: 16px;
+    color: var(--color-text-secondary);
+}
+
+/* ========================================
+   Mobile Responsive Styles (Touch Targets)
+   ======================================== */
+
+/* Ensure all buttons meet 44px minimum touch target on mobile */
+@media (max-width: 767px) {
+
+    /* All buttons should have minimum 44px height on mobile */
+    .btn {
+        min-height: 44px;
+        padding: 12px 24px;
+    }
+
+    /* Quiz page Next/Submit button */
+    .quiz-footer .btn {
+        min-height: 44px;
+    }
+
+    /* Results page buttons */
+    .btn-retake {
+        min-height: 44px;
+    }
+
+    /* Ensure radio options remain comfortable (already 56px) */
+    .radio-option {
+        min-height: 56px;
+    }
+}
+
+/* Disabled Radio Option */
+.radio-option.disabled {
+    cursor: not-allowed;
+    background: var(--color-bg-primary);
+    border-color: var(--color-border);
+    opacity: 0.6;
+}
+
+.radio-option.disabled:hover {
+    background: var(--color-bg-primary);
+    border-color: var(--color-border);
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Send Results - Light Theme</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1da1f2",
+                        "background-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "Noto Sans", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    boxShadow: {
+                        'soft': '0 8px 30px -4px rgba(0, 0, 0, 0.08)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            min-height: max(600px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-white text-[#111518] font-display overflow-x-hidden antialiased selection:bg-primary selection:text-white">
+<div class="relative flex h-full min-h-screen w-full flex-col pb-24">
+<div class="sticky top-0 z-50 flex items-center bg-white p-4 justify-between">
+<button class="text-[#111518] flex size-12 shrink-0 items-center justify-center rounded-full hover:bg-gray-100 transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h2 class="text-[#111518] text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Save Your Results</h2>
+<div class="size-12"></div>
+</div>
+<div class="flex flex-col items-center w-full max-w-md mx-auto px-6 pt-6">
+<div class="mb-8 relative w-48 h-48 flex items-center justify-center">
+<div class="absolute inset-0 bg-blue-50 rounded-full scale-110 opacity-50"></div>
+<div class="relative w-40 h-40 bg-[#f9f3e9] rounded-full shadow-soft flex items-center justify-center border-4 border-white">
+<span class="material-symbols-outlined text-[#1da1f2] text-7xl" style="font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 48">forward_to_inbox</span>
+</div>
+</div>
+<h1 class="text-[#111518] text-2xl font-bold text-center mb-8 leading-tight">
+            Where should we send<br/>your plan?
+        </h1>
+<form class="w-full flex flex-col gap-5">
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-gray-700 ml-1" for="fullname">
+                    Full Name <span class="text-red-500">*</span>
+</label>
+<input class="w-full h-14 rounded-2xl border border-gray-100 bg-gray-50 px-4 text-base text-[#111518] placeholder:text-gray-400 focus:border-[#1da1f2] focus:ring-[#1da1f2] focus:bg-white transition-all outline-none" id="fullname" placeholder="Ex: John Doe" required="" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-gray-700 ml-1" for="email">
+                    Email Address <span class="text-red-500">*</span>
+</label>
+<input class="w-full h-14 rounded-2xl border border-gray-100 bg-gray-50 px-4 text-base text-[#111518] placeholder:text-gray-400 focus:border-[#1da1f2] focus:ring-[#1da1f2] focus:bg-white transition-all outline-none" id="email" placeholder="Ex: john@example.com" required="" type="email"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-gray-700 ml-1" for="phone">
+                    Phone Number <span class="text-gray-400 font-normal text-xs ml-0.5">(Optional)</span>
+</label>
+<input class="w-full h-14 rounded-2xl border border-gray-100 bg-gray-50 px-4 text-base text-[#111518] placeholder:text-gray-400 focus:border-[#1da1f2] focus:ring-[#1da1f2] focus:bg-white transition-all outline-none" id="phone" placeholder="Ex: +1 (555) 000-0000" type="tel"/>
+</div>
+</form>
+</div>
+<div class="fixed bottom-0 left-0 right-0 p-6 bg-white border-t border-transparent z-40">
+<button class="w-full h-14 bg-[#1da1f2] hover:bg-[#1a94df] active:scale-[0.98] transition-all text-white rounded-full font-bold text-lg shadow-lg shadow-blue-200/50 flex items-center justify-center">
+            Send My Study Plan
+        </button>
+</div>
+</div>
+
+</body></html>

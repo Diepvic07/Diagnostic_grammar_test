@@ -1,0 +1,139 @@
+/* Landing Page Styles */
+
+.landing-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.landing-header {
+    background: var(--color-surface);
+    padding: 16px 0;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon-container {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #e8f5ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-icon-img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.logo-text {
+    font-family: var(--font-family);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-brand-blue);
+    letter-spacing: -0.015em;
+}
+
+/* Main Content */
+.landing-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 0 48px;
+    background: var(--color-bg-landing);
+}
+
+.landing-main .container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0 16px;
+}
+
+/* Headline */
+.landing-headline {
+    font-family: var(--font-family);
+    font-size: 32px;
+    font-weight: 900;
+    color: #111518;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: var(--space-md);
+    text-align: center;
+}
+
+@media (max-width: 767px) {
+    .landing-headline {
+        /* font-size: 28px; */
+    }
+}
+
+/* Subheadline */
+.landing-subheadline {
+    text-align: center;
+    color: #607a8a;
+    font-size: 16px;
+    line-height: 1.5;
+    max-width: 100%;
+    margin-bottom: 40px;
+}
+
+/* CTA Button */
+.btn-cta {
+    background: var(--color-brand-blue);
+    color: var(--color-surface);
+    font-family: var(--font-family);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.015em;
+    padding: 16px 48px;
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    width: 100%;
+    height: 56px;
+    max-width: 100%;
+    box-shadow: var(--shadow-button);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-cta:hover {
+    background: rgba(29, 161, 242, 0.9);
+    transform: scale(1);
+}
+
+.btn-cta:active {
+    transform: scale(0.98);
+}
+
+@media (min-width: 768px) {
+    .landing-main {
+        padding: 48px 0;
+    }
+}

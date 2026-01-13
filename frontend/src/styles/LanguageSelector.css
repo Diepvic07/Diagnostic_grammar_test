@@ -1,0 +1,122 @@
+/* Language Selector Styles (Renamed to avoid collisions) */
+
+.lang-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.lang-dropdown__button {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 12px;
+    background: #f3f4f6;
+    border: none;
+    border-radius: 9999px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    color: #607a8a;
+    transition: background-color 0.2s ease;
+    font-family: var(--font-family);
+    line-height: 1.5;
+    letter-spacing: 0.015em;
+    min-width: 120px;
+    /* Ensure enough width */
+    justify-content: space-between;
+}
+
+:global(.dark) .lang-dropdown__button {
+    background: #1f2937;
+    color: #d1d5db;
+}
+
+.lang-dropdown__button:hover {
+    background: #e5e7eb;
+}
+
+:global(.dark) .lang-dropdown__button:hover {
+    background: #374151;
+}
+
+.lang-dropdown__button:focus {
+    outline: 2px solid var(--color-brand-blue);
+    outline-offset: 2px;
+}
+
+.lang-dropdown__icon-globe {
+    font-size: 16px;
+    color: #607a8a;
+}
+
+:global(.dark) .lang-dropdown__icon-globe {
+    color: #9ca3af;
+}
+
+.lang-dropdown__text {
+    text-align: left;
+    flex: 1;
+    margin: 0 4px;
+}
+
+.lang-dropdown__icon-chevron {
+    font-size: 16px;
+    color: #607a8a;
+    transition: transform var(--transition-fast);
+}
+
+.lang-dropdown__button[aria-expanded="true"] .lang-dropdown__icon-chevron {
+    transform: rotate(180deg);
+}
+
+.lang-dropdown__menu {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-elevated);
+    min-width: 160px;
+    z-index: 1000;
+    /* High z-index to overlay other content */
+    overflow: hidden;
+    padding: 4px;
+}
+
+.lang-dropdown__option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 10px 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: var(--font-size-body);
+    text-align: left;
+    transition: background-color var(--transition-fast);
+    font-family: var(--font-primary);
+    border-radius: 4px;
+    color: var(--color-text-primary);
+    margin-bottom: 2px;
+}
+
+.lang-dropdown__option:hover {
+    background-color: var(--color-bg-primary);
+}
+
+.lang-dropdown__option.active {
+    background-color: #E0F2FE;
+    color: var(--color-brand-blue);
+    font-weight: var(--font-weight-semibold);
+}
+
+:global(.dark) .lang-dropdown__option.active {
+    background-color: rgba(14, 165, 233, 0.2);
+}
+
+.lang-dropdown__option:focus {
+    outline: none;
+    background-color: var(--color-bg-primary);
+}

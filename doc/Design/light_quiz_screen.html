@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Quiz Interface - Light Theme</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1ca0f2",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#101b22",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1d2932",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "2xl": "1.5rem", // 24px
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        "soft": "0 10px 40px -10px rgba(0,0,0,0.08)",
+                        "card": "0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02)"
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        /* Custom radio styling to hide default input but keep accessibility */
+        .custom-radio:checked + div {
+            border-color: #1ca0f2;
+            background-color: rgba(28, 160, 242, 0.08);
+        }
+        .custom-radio:checked + div .radio-circle-inner {
+            transform: scale(1);
+        }
+        .custom-radio:checked + div .radio-circle-outer {
+            border-color: #1ca0f2;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white antialiased min-h-screen flex flex-col items-center justify-center">
+<!-- Main Mobile Container -->
+<div class="relative flex h-full min-h-screen w-full max-w-md flex-col bg-background-light dark:bg-background-dark overflow-x-hidden shadow-2xl">
+<!-- Header -->
+<header class="flex items-center justify-between px-4 pt-6 pb-2 z-10">
+<button class="text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white transition-colors p-2 -ml-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined text-[28px]" data-icon="close">close</span>
+</button>
+<div class="flex-1"></div>
+<!-- Optional: Help or Menu icon could go here if needed, keeping it empty for distraction-free -->
+</header>
+<!-- Progress Section -->
+<div class="px-6 py-2 flex flex-col gap-3">
+<div class="flex justify-between items-end">
+<span class="text-slate-800 dark:text-white text-sm font-semibold tracking-wide">Question 12 of 50</span>
+<span class="text-slate-400 dark:text-slate-500 text-xs font-medium">24% completed</span>
+</div>
+<div class="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500 ease-out" style="width: 24%"></div>
+</div>
+</div>
+<!-- Scrollable Content Area -->
+<main class="flex-1 overflow-y-auto px-4 py-6 pb-32">
+<!-- Question Card -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-[24px] shadow-soft p-6 flex flex-col gap-6">
+<!-- Question Text -->
+<h2 class="text-slate-900 dark:text-white text-[22px] font-medium leading-[1.4] tracking-tight">
+                    If the trend continues, the average income <span class="inline-block w-16 border-b-2 border-slate-300 mx-1"></span> by 107% by 2020.
+                </h2>
+<!-- Answer Options -->
+<div class="flex flex-col gap-3">
+<!-- Option 1 -->
+<label class="cursor-pointer group relative">
+<input class="peer custom-radio sr-only" name="grammar-q1" type="radio" value="A"/>
+<div class="flex items-center gap-4 rounded-xl border-2 border-slate-100 dark:border-slate-700 bg-white dark:bg-slate-800/50 p-4 transition-all duration-200 hover:border-slate-200 dark:hover:border-slate-600">
+<!-- Custom Radio Indicator -->
+<div class="radio-circle-outer flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-slate-300 dark:border-slate-600 transition-colors">
+<div class="radio-circle-inner h-3 w-3 rounded-full bg-primary transform scale-0 transition-transform duration-200"></div>
+</div>
+<span class="text-slate-700 dark:text-slate-200 text-base font-medium">will have increased</span>
+</div>
+</label>
+<!-- Option 2 (Pre-selected for demo) -->
+<label class="cursor-pointer group relative">
+<input checked="" class="peer custom-radio sr-only" name="grammar-q1" type="radio" value="B"/>
+<div class="flex items-center gap-4 rounded-xl border-2 border-slate-100 dark:border-slate-700 bg-white dark:bg-slate-800/50 p-4 transition-all duration-200 hover:border-slate-200 dark:hover:border-slate-600">
+<div class="radio-circle-outer flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-slate-300 dark:border-slate-600 transition-colors">
+<div class="radio-circle-inner h-3 w-3 rounded-full bg-primary transform scale-0 transition-transform duration-200"></div>
+</div>
+<span class="text-slate-700 dark:text-slate-200 text-base font-medium">will increase</span>
+</div>
+</label>
+<!-- Option 3 -->
+<label class="cursor-pointer group relative">
+<input class="peer custom-radio sr-only" name="grammar-q1" type="radio" value="C"/>
+<div class="flex items-center gap-4 rounded-xl border-2 border-slate-100 dark:border-slate-700 bg-white dark:bg-slate-800/50 p-4 transition-all duration-200 hover:border-slate-200 dark:hover:border-slate-600">
+<div class="radio-circle-outer flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-slate-300 dark:border-slate-600 transition-colors">
+<div class="radio-circle-inner h-3 w-3 rounded-full bg-primary transform scale-0 transition-transform duration-200"></div>
+</div>
+<span class="text-slate-700 dark:text-slate-200 text-base font-medium">increases</span>
+</div>
+</label>
+<!-- Option 4 -->
+<label class="cursor-pointer group relative">
+<input class="peer custom-radio sr-only" name="grammar-q1" type="radio" value="D"/>
+<div class="flex items-center gap-4 rounded-xl border-2 border-slate-100 dark:border-slate-700 bg-white dark:bg-slate-800/50 p-4 transition-all duration-200 hover:border-slate-200 dark:hover:border-slate-600">
+<div class="radio-circle-outer flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-slate-300 dark:border-slate-600 transition-colors">
+<div class="radio-circle-inner h-3 w-3 rounded-full bg-primary transform scale-0 transition-transform duration-200"></div>
+</div>
+<span class="text-slate-700 dark:text-slate-200 text-base font-medium">has increased</span>
+</div>
+</label>
+</div>
+</div>
+</main>
+<!-- Sticky Footer -->
+<div class="fixed bottom-0 w-full max-w-md bg-gradient-to-t from-background-light via-background-light to-transparent dark:from-background-dark dark:via-background-dark pt-8 pb-6 px-4 z-20 pointer-events-none">
+<div class="pointer-events-auto">
+<button class="w-full flex cursor-pointer items-center justify-center rounded-full h-14 bg-primary hover:bg-sky-500 active:scale-[0.98] transition-all text-white text-[17px] font-bold shadow-lg shadow-blue-500/30">
+                    Next Question
+                </button>
+</div>
+</div>
+</div>
+</body></html>

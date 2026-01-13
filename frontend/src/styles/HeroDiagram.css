@@ -1,0 +1,139 @@
+/* Hero Diagram Component Styles */
+
+.hero-diagram {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: #f2f9ff;
+    border: 1px solid #e1effc;
+    border-radius: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    margin: 24px 0 32px;
+}
+
+/* Background decorative icons */
+.hero-bg-icon {
+    position: absolute;
+    color: #1da1f2;
+    opacity: 0.1;
+    user-select: none;
+    pointer-events: none;
+}
+
+.hero-bg-icon-1 {
+    top: 24px;
+    left: 24px;
+    font-size: 36px;
+}
+
+.hero-bg-icon-2 {
+    bottom: 40px;
+    right: 32px;
+    font-size: 48px;
+}
+
+.hero-bg-icon-3 {
+    top: 48px;
+    right: 40px;
+    font-size: 36px;
+}
+
+.hero-bg-icon-4 {
+    bottom: 56px;
+    left: 48px;
+    font-size: 28px;
+}
+
+/* Main content */
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    z-index: 10;
+    position: relative;
+}
+
+/* Grammar symbols row */
+.grammar-symbols {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.symbol-circle {
+    width: 56px;
+    height: 56px;
+    background: #FFFFFF;
+    border: 1px solid #e1effc;
+    border-radius: 50%;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.symbol-letter {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1da1f2;
+    font-family: var(--font-family);
+}
+
+.symbol-plus {
+    font-size: 20px;
+    font-weight: 700;
+    color: #607a8a;
+}
+
+/* Badge row */
+.badge-row {
+    display: flex;
+    gap: 8px;
+}
+
+.grammar-badge {
+    background: #dcecff;
+    color: #1da1f2;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 10px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-family: var(--font-family);
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+
+    .hero-bg-icon-1,
+    .hero-bg-icon-3 {
+        font-size: 28px;
+    }
+
+    .hero-bg-icon-2 {
+        font-size: 36px;
+    }
+
+    .hero-bg-icon-4 {
+        font-size: 24px;
+    }
+
+    .symbol-circle {
+        width: 48px;
+        height: 48px;
+    }
+
+    .symbol-letter {
+        font-size: 20px;
+    }
+
+    .grammar-badge {
+        font-size: 9px;
+        padding: 3px 10px;
+    }
+}

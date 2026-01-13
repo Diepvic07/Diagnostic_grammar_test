@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>eJOY English - Grammar Check</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;700;900&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1ca0f2",
+                        "background-light": "#ffffff",
+                        "background-dark": "#101b22",
+                        "text-primary": "#111518",
+                        "text-secondary": "#607a8a",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "sans": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-primary overflow-x-hidden min-h-screen flex flex-col antialiased">
+<header class="flex items-center bg-white dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-50">
+<div class="flex items-center gap-3">
+<div class="flex size-10 shrink-0 items-center justify-center bg-[#e8f5ff] rounded-full">
+<span class="material-symbols-outlined text-primary text-2xl">school</span>
+</div>
+<h2 class="text-text-primary dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">eJOY English</h2>
+</div>
+<button class="flex items-center gap-1 bg-gray-100 dark:bg-gray-800 rounded-full px-3 py-1.5 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+<span class="material-symbols-outlined text-text-secondary text-sm">language</span>
+<span class="text-text-secondary dark:text-gray-300 text-sm font-bold leading-normal tracking-[0.015em]">English</span>
+<span class="material-symbols-outlined text-text-secondary text-sm">expand_more</span>
+</button>
+</header>
+<main class="flex-1 flex flex-col items-center w-full px-4 pt-6 pb-12 max-w-md mx-auto @container">
+<div class="w-full flex justify-center mb-8 relative">
+<div class="w-full aspect-[4/3] bg-[#f2f9ff] rounded-[2rem] flex items-center justify-center relative overflow-hidden border border-[#e1effc]">
+<div class="flex flex-col items-center gap-6 z-10">
+<div class="flex items-center gap-4">
+<div class="bg-white dark:bg-gray-800 shadow-sm rounded-full w-14 h-14 flex items-center justify-center border border-[#e1effc]">
+<span class="text-primary font-bold text-2xl">S</span>
+</div>
+<span class="text-text-secondary text-xl font-bold">+</span>
+<div class="bg-white dark:bg-gray-800 shadow-sm rounded-full w-14 h-14 flex items-center justify-center border border-[#e1effc]">
+<span class="text-primary font-bold text-2xl">V</span>
+</div>
+<span class="text-text-secondary text-xl font-bold">+</span>
+<div class="bg-white dark:bg-gray-800 shadow-sm rounded-full w-14 h-14 flex items-center justify-center border border-[#e1effc]">
+<span class="text-primary font-bold text-2xl">O</span>
+</div>
+</div>
+<div class="flex gap-2">
+<span class="bg-[#dcecff] text-primary px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider">Subject</span>
+<span class="bg-[#dcecff] text-primary px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider">Verb</span>
+<span class="bg-[#dcecff] text-primary px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider">Object</span>
+</div>
+</div>
+<span class="material-symbols-outlined absolute top-6 left-6 text-primary/10 text-4xl select-none">spellcheck</span>
+<span class="material-symbols-outlined absolute bottom-10 right-8 text-primary/10 text-5xl select-none">translate</span>
+<span class="material-symbols-outlined absolute top-12 right-10 text-primary/10 text-4xl select-none">menu_book</span>
+<span class="material-symbols-outlined absolute bottom-14 left-12 text-primary/10 text-3xl select-none">rule</span>
+<div style='display:none; background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAcAOT2iUnaSwiIuuBYxgIimbpIWZR8e94q8j9lcshizxMcG1yxd36UlEgLwFoiHh7YhMa_JPjmdxhMQjJ5qMqNW1A5YYEMm0LLSmBi1R5BnHKUCRQqltIOUAhMHK7kzABK0Jjpz-y3mr3kKl4JzNtjzNkV-sXetrHqo01g4RNzKPj2avIk5yu4Ld6C4NqvPFeQN9I6X_gO6BaPRycLF4zftKCVrEuokdFMYDleViN_IzfWBW0YBfiTZiIsdD5qEnWv2Ks49qbowTc1");'></div>
+</div>
+</div>
+<div class="flex flex-col gap-4 text-center mb-10 w-full">
+<h1 class="text-text-primary dark:text-white text-[32px] font-black leading-[1.1] tracking-[-0.01em]">
+            Check your English Grammar Level
+        </h1>
+<p class="text-text-secondary dark:text-gray-400 text-base font-normal leading-relaxed px-4">
+            Take our 50-question diagnostic test. Get detailed feedback and personalized study plans.
+        </p>
+</div>
+<div class="w-full flex flex-col gap-4 mt-auto">
+<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 px-5 bg-primary hover:bg-primary/90 transition-all shadow-lg shadow-primary/25 text-white text-lg font-bold leading-normal tracking-[0.015em] active:scale-[0.98]">
+            Start Quiz Now
+        </button>
+</div>
+</main>
+<div class="h-6 w-full"></div>
+
+</body></html>

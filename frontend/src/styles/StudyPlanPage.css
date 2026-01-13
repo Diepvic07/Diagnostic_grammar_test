@@ -1,0 +1,488 @@
+/* Study Plan Page Styles */
+
+.study-plan-page {
+    min-height: 100vh;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 112px;
+    /* Space for fixed footer */
+}
+
+/* Sticky Header with Blur */
+/* Dark mode support using class strategy to avoid OS preference conflicts */
+:global(.dark) .study-plan-header {
+    background: rgba(16, 27, 34, 0.9);
+    border-bottom-color: #1f2937;
+}
+
+.study-plan-header .btn-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 9999px;
+    background: transparent;
+    border: none;
+    color: #111518;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.share-button-wrapper {
+    display: flex;
+    width: 48px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.study-plan-header .btn-icon:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.study-plan-header .btn-icon .material-symbols-outlined {
+    font-size: 24px;
+}
+
+:global(.dark) .study-plan-header .btn-icon {
+    color: #FFFFFF;
+}
+
+:global(.dark) .study-plan-header .btn-icon:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.study-plan-title {
+    flex: 1;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: #111518;
+    letter-spacing: -0.015em;
+    margin: 0;
+}
+
+:global(.dark) .study-plan-title {
+    color: #FFFFFF;
+}
+
+/* Main Content */
+.study-plan-main {
+    flex: 1;
+}
+
+/* Content Section */
+.content-section {
+    padding: 24px 24px 0;
+}
+
+.plan-headline {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111518;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+    margin: 0 0 8px;
+    position: relative;
+    z-index: 10;
+}
+
+.plan-subtitle {
+    font-size: 16px;
+    font-weight: 400;
+    color: #607a8a;
+    line-height: 1.6;
+    max-width: 90%;
+    margin: 8px 0 16px;
+}
+
+:global(.dark) .plan-headline {
+    color: #FFFFFF;
+}
+
+:global(.dark) .plan-subtitle {
+    color: #94a3b8;
+}
+
+/* Recommendation Cards */
+.recommendation-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    padding: 16px 24px;
+    margin-bottom: 8px;
+}
+
+.recommendation-card {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.recommendation-card:active {
+    transform: scale(0.98);
+}
+
+.recommendation-card__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.75);
+    transition: transform 500ms ease;
+}
+
+.recommendation-card:hover .recommendation-card__image {
+    transform: scale(1.1);
+}
+
+.recommendation-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent, transparent);
+}
+
+.recommendation-card__overlay--ejoy {
+    background: var(--color-brand-blue);
+    opacity: 0.9;
+}
+
+.recommendation-card__content {
+    position: absolute;
+    inset: 0;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 10;
+}
+
+.recommendation-card__icon-badge {
+    width: fit-content;
+    padding: 6px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.recommendation-card__icon-badge--book {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.recommendation-card__icon-badge--ejoy {
+    background: #1da1f2;
+}
+
+.recommendation-card__icon-badge .material-symbols-outlined {
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+.recommendation-card__text {
+    display: flex;
+    flex-direction: column;
+}
+
+.recommendation-card__label {
+    font-size: 8px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.9);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 2px;
+}
+
+.recommendation-card__title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #FFFFFF;
+    line-height: 1.2;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    /* Standard property for compatibility */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Section Header */
+.section-header {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111518;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+    padding: 16px 24px 12px;
+    margin: 0;
+}
+
+:global(.dark) .section-header {
+    color: #FFFFFF;
+}
+
+/* Topic Cards Container */
+.topic-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    /* gap-6 */
+    padding: 0 24px 24px;
+    /* px-6 pb-6 - matches design spec mx-6 mb-6 for individual cards */
+}
+
+/* Topic Card */
+.topic-card {
+    background: #FFFFFF;
+    border-radius: 16px;
+    /* 2xl - matches design spec */
+    padding: 20px;
+    /* p-5 */
+    box-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.08);
+    /* shadow-soft */
+    border: 1px solid #f3f4f6;
+    /* gray-100 */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* gap-5 */
+    transition: transform 0.2s ease;
+}
+
+.topic-card:active {
+    transform: scale(0.99);
+}
+
+:global(.dark) .topic-card {
+    background: #1e2a30;
+    border-color: #1f2937;
+}
+
+.topic-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f9fafb;
+}
+
+:global(.dark) .topic-card__header {
+    border-bottom-color: #374151;
+}
+
+.topic-card__name {
+    font-family: var(--font-family);
+    font-size: 18px;
+    font-weight: 700;
+    color: #111518;
+    margin: 0;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+:global(.dark) .topic-card__name {
+    color: #FFFFFF;
+}
+
+/* Topic Resource Item */
+.topic-card__resource {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.topic-card__icon-badge {
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.topic-card__icon-badge--book {
+    background: #eff6ff;
+    color: #3b82f6;
+}
+
+.topic-card__icon-badge--video {
+    background: #fff7ed;
+    color: #f97316;
+}
+
+:global(.dark) .topic-card__icon-badge--book {
+    background: rgba(30, 64, 175, 0.3);
+    color: #93c5fd;
+}
+
+:global(.dark) .topic-card__icon-badge--video {
+    background: rgba(124, 45, 18, 0.3);
+    color: #fdba74;
+}
+
+.topic-card__icon-badge .material-symbols-outlined {
+    font-size: 20px;
+}
+
+.topic-card__resource-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+}
+
+.topic-card__resource-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #52637a;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+:global(.dark) .topic-card__resource-label {
+    color: #64748b;
+}
+
+.topic-card__resource-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #111518;
+    margin: 0;
+}
+
+:global(.dark) .topic-card__resource-title {
+    color: #e5e7eb;
+}
+
+.topic-card__resource-link {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-brand-orange);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: opacity 0.2s ease;
+}
+
+.topic-card__resource-link:hover {
+    opacity: 0.8;
+}
+
+.topic-card__resource-link .material-symbols-outlined {
+    font-size: 14px;
+}
+
+/* Fixed Footer with Gradient */
+.study-plan-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 16px;
+    padding-top: 48px;
+    background: linear-gradient(to top, #FFFFFF, #FFFFFF, transparent);
+    display: flex;
+    justify-content: center;
+    z-index: 40;
+}
+
+:global(.dark) .study-plan-footer {
+    background: linear-gradient(to top, #101b22, #101b22, transparent);
+}
+
+.study-plan-footer .btn-primary {
+    width: 100%;
+    height: 56px;
+    background: #1da1f2;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 9999px;
+    font-size: 18px;
+    font-weight: 700;
+    box-shadow: 0 10px 15px -3px rgba(147, 197, 253, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.study-plan-footer .btn-primary:hover {
+    opacity: 0.9;
+}
+
+.study-plan-footer .btn-primary:active {
+    transform: scale(0.98);
+}
+
+.study-plan-footer .btn-primary .material-symbols-outlined {
+    font-size: 24px;
+}
+
+:global(.dark) .study-plan-footer .btn-primary {
+    box-shadow: 0 10px 15px -3px rgba(30, 64, 175, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 375px) {
+    .recommendation-cards {
+        gap: 12px;
+        padding: 12px 16px;
+    }
+
+    .recommendation-card {
+        height: 130px;
+    }
+
+    .plan-headline {
+        font-size: 24px;
+    }
+
+    .content-section {
+        padding: 20px 16px 0;
+    }
+
+    .topic-cards {
+        padding: 0 16px 16px;
+        gap: 16px;
+    }
+}
+
+@media (min-width: 768px) {
+    .study-plan-page {
+        padding-bottom: 96px;
+    }
+
+    .plan-headline {
+        font-size: 32px;
+    }
+
+    .recommendation-card {
+        height: 180px;
+    }
+
+    .recommendation-card__title {
+        font-size: 16px;
+    }
+}
