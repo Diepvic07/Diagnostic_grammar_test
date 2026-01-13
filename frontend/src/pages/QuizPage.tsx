@@ -6,7 +6,7 @@ import { useTranslation } from '../hooks/useTranslation';
 import { useLanguage } from '../context/LanguageContext';
 
 interface QuizPageProps {
-    onQuizComplete?: (sessionId: string, answers: any[]) => void | Promise<void>;
+    onQuizComplete?: (sessionId: string, answers: any[], questions: any[]) => void | Promise<void>;
 }
 
 export const QuizPage: React.FC<QuizPageProps> = ({ onQuizComplete }) => {
@@ -85,7 +85,7 @@ export const QuizPage: React.FC<QuizPageProps> = ({ onQuizComplete }) => {
                     }));
 
                     if (onQuizComplete && sessionId) {
-                        await onQuizComplete(sessionId, payload);
+                        await onQuizComplete(sessionId, payload, questions);
                     }
                 } catch (error) {
                     console.error('Error completing quiz:', error);

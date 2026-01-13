@@ -47,13 +47,12 @@ function Main() {
   console.log("Current Language:", language); // Use variable to silence linter
 
 
-  const handleQuizComplete = async (_sessionId: string, answers: any[]) => {
+  const handleQuizComplete = async (_sessionId: string, answers: any[], questionsData: any[]) => {
     try {
       // 1. Calculate Score Locally
       // Map answers to UserAnswer type expected by scoring util
-      // Use the JSON data source which matches what useQuestions uses
-      const questionsDataRaw = (await import('./data/questions.json')).default;
-      const questionsData = questionsDataRaw as unknown as any[];
+      // Use the questions data passed from QuizPage (which handles language loading)
+
 
       const detailedAnswers = answers.map(a => {
         const question = questionsData.find(q => q.id === a.questionId);
