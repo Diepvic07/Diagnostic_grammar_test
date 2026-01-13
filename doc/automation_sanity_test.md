@@ -49,14 +49,24 @@ Verify the critical "Happy Path" of the Diagnostic Grammar Test application, ens
         *   Topic Name.
         *   "Study Reference" (Book unit).
         *   "Practice" link/button.
-    *   "Get Full Report" (or Email CTA) button is present.
-
-### 5. Email Request Flow
-*   **Action:** Click "Get Full Report" (or `Continue`).
+    *   "Download PDF" button is present.
+*   **Action:** Click "Download PDF".
 *   **Checks:**
-    *   Navigation to Email Request form.
-    *   Input fields for Name and Email are present.
+    *   Verify print dialog is triggered (or console log if mocked).
+    *   Verify no visual crash or error.
+*   **Action:** Click "Get Full Report" (or `Email & Special Gift` CTA).
+
+### 5. Email Request Flow & Submission
+*   **Action:** Navigate to Email Request form.
+*   **Checks:**
+    *   Input fields for Name, Email, and Phone number are present.
     *   Submit button exists.
+*   **Action:** Enter valid Name (`Test User`), Email (`test@example.com`), and Phone (`0123456789`).
+*   **Action:** Click Submit.
+*   **Checks:**
+    *   Loading state (spinner/button disable) appears.
+    *   Success message is displayed ("Success" or "Thank you").
+    *   Verify no console errors related to API calls.
 
 ## Execution Method
 The AI Agent will launch a browser instance, perform these steps sequentially, and record observations.

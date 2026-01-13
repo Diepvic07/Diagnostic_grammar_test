@@ -10,6 +10,20 @@
 }
 
 /* Sticky Header with Blur */
+.study-plan-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
 /* Dark mode support using class strategy to avoid OS preference conflicts */
 :global(.dark) .study-plan-header {
     background: rgba(16, 27, 34, 0.9);
@@ -484,5 +498,46 @@
 
     .recommendation-card__title {
         font-size: 16px;
+    }
+}
+
+@media print {
+
+    /* Hide non-printable elements */
+    .btn,
+    .btn-icon,
+    .study-plan-footer,
+    .share-button-wrapper,
+    .study-plan-header button {
+        display: none !important;
+    }
+
+    /* Reset layout for paper */
+    .study-plan-page {
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+        background: white !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    .study-plan-main {
+        padding-bottom: 0 !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    /* Ensure background colors/images print */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    /* Page breaks */
+    .topic-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        border: 1px solid #ddd;
     }
 }

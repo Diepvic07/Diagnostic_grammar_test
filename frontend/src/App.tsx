@@ -8,7 +8,6 @@ import { StudyPlanPage } from './pages/StudyPlanPage'
 import { LanguageProvider, useLanguage } from './context/LanguageContext'
 import { Header } from './components/Header'
 import { DemoNav } from './components/DemoNav'
-import { api } from './services/api'
 import { identifyWeakAreas } from './utils/scoring';
 import type { QuizResultsResponse } from './types'
 
@@ -45,20 +44,60 @@ function Main() {
   const [quizResults, setQuizResults] = useState<QuizResultsResponse | null>(null);
   const [isSendingEmail, setIsSendingEmail] = useState(false);
   const { language } = useLanguage();
+  console.log("Current Language:", language); // Use variable to silence linter
 
-  const handleQuizComplete = async (sessionId: string, answers: any[]) => {
+
+  const handleQuizComplete = async (_sessionId: string, answers: any[]) => {
     try {
-      // 1. Submit answers
-      await api.submitQuiz(sessionId, answers);
+      // 1. Calculate Score Locally
+      // Map answers to UserAnswer type expected by scoring util
+      const questionsData = (await import('./data/questions')).questions;
 
-      // 2. Fetch detailed results with correct language
-      const results = await api.getResults(sessionId, language);
+      const detailedAnswers = answers.map(a => {
+        const question = questionsData.find(q => q.id === a.questionId);
+        const selected = question?.answers.find(ans => ans.id === a.selectedAnswerId);
+        const correct = question?.answers.find(ans => ans.isCorrect);
+
+        return {
+          questionId: a.questionId,
+          questionText: question?.contentEn || '',
+          selectedAnswer: selected?.textEn || '',
+          correctAnswer: correct?.textEn || '',
+          isCorrect: selected?.isCorrect || false,
+          explanation: question?.explanationEn || '',
+          grammarTopic: question?.grammarTopic || '',
+          topicNumber: 0, // Not in current local data, defaults to 0
+          timeTaken: 0, // If we tracked time per question
+          selectedAnswerId: a.selectedAnswerId
+        };
+      });
+
+      const correctCount = detailedAnswers.filter(a => a.isCorrect).length;
+      const results: QuizResultsResponse = {
+        score: correctCount,
+        totalQuestions: 50,
+        percentage: Math.round((correctCount / 50) * 100),
+        questions: detailedAnswers.map(a => ({
+          id: a.questionId,
+          questionText: a.questionText,
+          userAnswer: a.selectedAnswer,
+          correctAnswer: a.correctAnswer,
+          isCorrect: a.isCorrect,
+          explanation: a.explanation,
+          grammarTopic: a.grammarTopic,
+          topicNumber: a.topicNumber
+        }))
+      };
+
       setQuizResults(results);
       setCurrentPage('results');
+
+      // Background: We can still trigger AnalyticsService here if we want immediate data safety,
+      // but waiting for the Email Request form (Step 2) is better as we get student info.
+
     } catch (error) {
-      console.error('Failed to submit quiz:', error);
-      alert('Failed to submit quiz. Please try again.');
-      throw error;
+      console.error('Failed to complete quiz:', error);
+      alert('Error processing results.');
     }
   };
 
@@ -71,6 +110,7 @@ function Main() {
     setCurrentPage('study-plan');
   };
 
+  // Expose test helper for Automation
   // Expose test helper for Automation
   useEffect(() => {
     (window as any).fastTrackQuiz = () => {
@@ -95,22 +135,15 @@ function Main() {
     };
 
     // Check for Plan ID in URL (Deep Linking)
+    // Legacy: This was for checking backend for past results. 
+    // For static site, we can't fetch by ID unless we query Google Sheets (which is async and complex for this scope)
+    // or if we passed encoded data. 
+    // For now, we will just log it or ignore.
     const params = new URLSearchParams(window.location.search);
     const planId = params.get('planId');
     if (planId) {
-      // If we have a backend, fetch it.
-      // For this demo/codebase, if no real backend exists, this might fail or need mocking.
-      // We will attempt to fetch.
-      api.getResults(planId, 'en').then(results => {
-        setQuizResults(results);
-        // Also need to identify weak topics if not returned directly
-        // But let's just go to results or study plan
-        // If we go to results, user can click "View Study Plan".
-        setCurrentPage('results');
-      }).catch(err => {
-        console.error("Failed to load plan", err);
-        // Optional: Show error or go to landing
-      });
+      console.log("Loaded with plan ID:", planId);
+      // Potential future enhancement: fetch from Google Sheet via Apps Script based on ID
     }
   }, []);
 
@@ -177,6 +210,16 @@ function Main() {
   };
 
   const renderPage = () => {
+    // Calculate weak topics once if results exist
+    const currentWeakTopics = quizResults ? identifyWeakAreas(quizResults.questions.map(q => ({
+      questionId: q.id,
+      selectedAnswer: q.userAnswer,
+      correctAnswer: q.correctAnswer,
+      isCorrect: q.isCorrect,
+      timeTaken: 0,
+      grammarTopic: q.grammarTopic
+    }))) : [];
+
     switch (currentPage) {
       case 'landing':
         return <LandingPage onStartQuiz={() => setCurrentPage('quiz')} />;
@@ -191,17 +234,9 @@ function Main() {
           />
         );
       case 'study-plan':
-        const weakTopics = quizResults ? identifyWeakAreas(quizResults.questions.map(q => ({
-          questionId: q.id,
-          selectedAnswer: q.userAnswer,
-          correctAnswer: q.correctAnswer,
-          isCorrect: q.isCorrect,
-          timeTaken: 0,
-          grammarTopic: q.grammarTopic
-        }))) : [];
         return (
           <StudyPlanPage
-            weakTopics={weakTopics}
+            weakTopics={currentWeakTopics}
             onContinue={() => setCurrentPage('email-request')}
           />
         );
@@ -211,6 +246,7 @@ function Main() {
             onBack={() => setCurrentPage('study-plan')}
             onSubmit={handleSendEmail}
             isLoading={isSendingEmail}
+            weakTopics={currentWeakTopics}
           />
         );
       case 'email-success':

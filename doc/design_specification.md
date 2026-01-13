@@ -799,32 +799,70 @@ box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), shadow-blue-500/30;
 **File**: `doc/Design/light_email.html`
 
 **Layout Structure**
-- **Header**: Sticky top, with "Save Your Results" centered title and back button
-- **Hero Image**: Centered friendly illustration (Forward to Inbox concept)
-- **Heading**: "Where should we send your plan?"
-- **Form**: Name, Email, Phone (optional) inputs
-- **CTA**: Sticky bottom "Send My Study Plan" button
+- **Header**: Sticky top, Back button (left), "Get Your Plan & Gift Code" centered title
+- **Content**: Two main cards stacked vertically
+  1. **Immediate Access Card**: PDF Download option
+  2. **Email & Special Gift Card**: Form with "Limited Offer" incentives
 
 **Specifications**
-- **Hero Icon Container**:
-  - Size: 160px × 160px
-  - Background: `#f9f3e9`
-  - Border: 4px solid white
-  - Shadow: Soft
-  - Icon: `forward_to_inbox` (Material Symbols), size 72px, color `#1da1f2`
-- **Input Fields**:
-  - Height: 56px (h-14)
-  - Background: `#f9fafb` (gray-50)
-  - Border: 1px solid `#f3f4f6` (gray-100)
-  - Border-radius: 16px (2xl)
-  - Focus State: White bg, `#1da1f2` border and ring
-  - Label: Semibold, 14px, gray-700
-- **Primary Button**:
-  - Text: "Send My Study Plan"
-  - Height: 56px (h-14)
-  - Background: `#1da1f2`
-  - Shadow: `shadow-blue-200/50`
+
+**1. Immediate Access Card**
+- **Header**: "IMMEDIATE ACCESS" label
+  - Font-size: 12px (text-xs)
+  - Color: `#9ca3af` (gray-400)
+  - Uppercase, tracking-widest
+- **Card Container**:
+  - Background: `#FFFFFF`
+  - Border-radius: 24px
+  - Padding: 24px (p-6)
+  - Shadow: `0 4px 12px rgba(0, 0, 0, 0.05)` (shadow-ios)
+  - Border: 1px solid `#f9fafb` (gray-50)
+  - Display: Flex column, centered
+- **Icon**:
+  - `print` (Material Symbols)
+  - Size: 30px
+  - Container: 64px circle, bg-blue-50
+- **Title**: "Download Free PDF Plan" (18px Bold)
+- **Primary Action (PDF)**:
+  - Text: "Download PDF"
+  - Styling: White bg, Border 2px solid `#1da1f2` (primary), Text Primary Blue
+  - Icon: `download`
   - Radius: Full pill
+  - Width: 100%
+- **Badge**: "FREE & READY NOW" (Green text)
+
+**2. Email & Special Gift Card**
+- **Header Row**:
+  - Label: "EMAIL & SPECIAL GIFT"
+  - **Pulsing Badge**: "Only 100 left!" (Red text/bg, animate-pulse dot)
+- **Card Container**:
+  - Background: `#FFFFFF`
+  - Border-radius: 24px
+  - Padding: 24px
+  - Shadow: `shadow-ios`
+  - Overflow: hidden (for ribbon)
+- **Ribbon**: "LIMITED OFFER" (Top-right corner, rotated 45deg, Primary Blue bg)
+- **Gift Hero**:
+  - Icon: `card_giftcard` (Yellow-600) in Yellow-50 container
+  - Title: "Email Results & Get 7-Day Gift"
+  - Subtext: "Receive your summary and a gift code..."
+- **Form Fields**:
+  - **Input Style**:
+    - Height: 48px
+    - Background: `#FFFFFF`
+    - Border: 1px solid `#e5e7eb` (gray-200)
+    - Radius: 12px (xl)
+    - Focus: Border Primary Blue, Ring-1 Primary Blue
+  - **Fields**: Full Name, Email Address, Phone Number (optional)
+- **Submit Button**:
+  - Text: "Send My Gift Code"
+  - Icon: `send`
+  - Background: `#1da1f2` (primary)
+  - Height: 56px (h-14)
+  - Radius: 16px (2xl)
+  - Shadow: `shadow-lg shadow-blue-200/50`
+  - Width: 100%
+
 
 
 #### 2.4.2 Email Success Screen
