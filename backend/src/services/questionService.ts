@@ -1,26 +1,13 @@
-import { PrismaClient } from '@prisma/client';
+import { JsonStore } from '../utils/jsonStore';
 import type { Question } from '../types';
-
-const prisma = new PrismaClient({
-    datasources: {
-        db: {
-            url: process.env.DATABASE_URL
-        }
-    }
-});
 
 /**
  * Get all 50 questions for quiz (MVP version)
  * For future expansion with 200+ questions, implement randomization logic
  */
 export async function getQuizQuestions(): Promise<Question[]> {
-    // 1. Get all questions with minimal fields to perform selection
-    const allQuestions = await prisma.question.findMany({
-        select: {
-            id: true,
-            topicNumber: true,
-        },
-    });
+    // 1. Get all questions
+    const allQuestions = JsonStore.getQuestions();
 
     // 2. Group by topic
     const byTopic: Record<number, string[]> = {};
@@ -48,17 +35,9 @@ export async function getQuizQuestions(): Promise<Question[]> {
     }
 
     // 4. Fetch full details for selected IDs
-    const questions = await prisma.question.findMany({
-        where: {
-            id: { in: selectedIds },
-        },
-        include: {
-            answers: true,
-        },
-        orderBy: {
-            topicNumber: 'asc',
-        },
-    });
+    const questions = allQuestions
+        .filter(q => selectedIds.includes(q.id))
+        .sort((a, b) => a.topicNumber - b.topicNumber);
 
     // 5. Shuffle answer order for each question
     return questions.map((q) => ({
@@ -71,14 +50,8 @@ export async function getQuizQuestions(): Promise<Question[]> {
  * Get a single question by ID with answers
  */
 export async function getQuestionById(questionId: string): Promise<Question | null> {
-    const question = await prisma.question.findUnique({
-        where: { id: questionId },
-        include: {
-            answers: true,
-        },
-    });
-
-    return question;
+    const question = JsonStore.getQuestionById(questionId);
+    return question || null;
 }
 
 /**
@@ -88,15 +61,10 @@ export async function getExplanation(
     questionId: string,
     languageCode: 'en' | 'vi' | 'es' | 'zh'
 ): Promise<string | null> {
-    const explanation = await prisma.explanation.findUnique({
-        where: {
-            questionId_languageCode: {
-                questionId,
-                languageCode,
-            },
-        },
-    });
+    const question = JsonStore.getQuestionById(questionId);
+    if (!question || !question.explanations) return null;
 
+    const explanation = question.explanations.find(e => e.languageCode === languageCode);
     return explanation?.explanationText || null;
 }
 
@@ -104,14 +72,10 @@ export async function getExplanation(
  * Get correct answer for a question
  */
 export async function getCorrectAnswer(questionId: string): Promise<string | null> {
-    const question = await prisma.question.findUnique({
-        where: { id: questionId },
-        include: {
-            answers: true,
-        },
-    });
+    const question = JsonStore.getQuestionById(questionId);
+    if (!question) return null;
 
-    const correctAnswer = question?.answers.find((a) => a.isCorrect);
+    const correctAnswer = question.answers.find((a) => a.isCorrect);
     return correctAnswer?.id || null;
 }
 
@@ -131,9 +95,5 @@ function shuffleArray<T>(array: T[]): T[] {
  * For future expansion: Get random questions ensuring topic coverage
  */
 export async function getRandomQuestions(count: number = 50): Promise<Question[]> {
-    // TODO: Implement smart randomization when question bank > 50
-    // Ensure at least 1 question from each of 25 topics
-    // Fill remaining slots with random questions
-
-    return getQuizQuestions(); // For now, return all 50
+    return getQuizQuestions();
 }

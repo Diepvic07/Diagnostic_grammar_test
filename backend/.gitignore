@@ -4,3 +4,4 @@ dist/
 .DS_Store
 *.log
 .prisma/
+src/data/sessions.json

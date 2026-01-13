@@ -1,8 +1,6 @@
-import { PrismaClient } from '@prisma/client';
-import type { UserAnswer, QuizSubmitRequest } from '../types';
+import { JsonStore } from '../utils/jsonStore';
+import type { UserAnswer } from '../types';
 import { getCorrectAnswer } from './questionService';
-
-const prisma = new PrismaClient();
 
 /**
  * Calculate quiz score from user answers
@@ -16,6 +14,11 @@ export async function calculateScore(
     percentage: number;
     answersData: UserAnswer[];
 }> {
+    const session = JsonStore.getSessionById(sessionId);
+    if (!session) {
+        throw new Error('Session not found');
+    }
+
     const answersData: UserAnswer[] = [];
     let correctCount = 0;
 
@@ -28,10 +31,7 @@ export async function calculateScore(
         }
 
         // Get topic info
-        const question = await prisma.question.findUnique({
-            where: { id: answer.questionId },
-            select: { grammarTopic: true, topicNumber: true },
-        });
+        const question = JsonStore.getQuestionById(answer.questionId);
 
         answersData.push({
             questionId: answer.questionId,
@@ -46,15 +46,12 @@ export async function calculateScore(
     const percentage = Math.round((correctCount / totalQuestions) * 100);
 
     // Update session
-    await prisma.userSession.update({
-        where: { id: sessionId },
-        data: {
-            score: correctCount,
-            totalQuestions,
-            answersData: JSON.stringify(answersData),
-            completedAt: new Date(),
-        },
-    });
+    session.score = correctCount;
+    session.totalQuestions = totalQuestions;
+    session.answersData = answersData;
+    session.completedAt = new Date();
+
+    JsonStore.saveSession(session);
 
     return {
         score: correctCount,
@@ -71,28 +68,27 @@ export async function getSessionResults(
     sessionId: string,
     language: 'en' | 'vi' | 'es' | 'zh'
 ) {
-    const session = await prisma.userSession.findUnique({
-        where: { id: sessionId },
-    });
+    const session = JsonStore.getSessionById(sessionId);
 
     if (!session || !session.answersData) {
         throw new Error('Session not found or not completed');
     }
 
-    const answersData = JSON.parse(session.answersData) as UserAnswer[];
+    // Handle both stringified and object data (for safety/compatibility)
+    const answersData = typeof session.answersData === 'string'
+        ? JSON.parse(session.answersData) as UserAnswer[]
+        : session.answersData;
+
     const questionResults = [];
 
     for (const answer of answersData) {
-        const question = await prisma.question.findUnique({
-            where: { id: answer.questionId },
-            include: { answers: true, explanations: true },
-        });
+        const question = JsonStore.getQuestionById(answer.questionId);
 
         if (!question) continue;
 
         const userAnswerObj = question.answers.find((a) => a.id === answer.selectedAnswerId);
         const correctAnswerObj = question.answers.find((a) => a.isCorrect);
-        const explanation = question.explanations.find((e) => e.languageCode === language);
+        const explanation = question.explanations?.find((e) => e.languageCode === language);
 
         questionResults.push({
             id: question.id,

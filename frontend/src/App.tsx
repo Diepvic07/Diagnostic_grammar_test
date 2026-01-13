@@ -82,10 +82,10 @@ function Main() {
           id: `q${i}`,
           questionText: `Mock Question ${i}`,
           userAnswer: "A",
-          correctAnswer: "A",
-          isCorrect: true,
+          correctAnswer: "B", // Different answer
+          isCorrect: i % 2 === 0, // 50% correct
           explanation: "Mock Explanation",
-          grammarTopic: "Test Topic",
+          grammarTopic: `Topic ${i % 5}`, // 5 topics
           topicNumber: 1
         }))
       };
@@ -156,7 +156,10 @@ function Main() {
           duration: quizResults.totalQuestions * 15
         },
         weakTopics: weakTopics, // Now limited to top 5
-        responses: responses
+        responses: responses,
+        studyPlan: weakTopics.map(t =>
+          `Topic: ${t.name} | Book: ${t.bookReference} | Video: ${t.video ? t.video.url : 'N/A'}`
+        ).join('\n')
       };
 
       const success = await AnalyticsService.submitResults(payload);

@@ -1,11 +1,11 @@
 import { Router, Request, Response } from 'express';
-import { PrismaClient } from '@prisma/client';
+import { randomUUID } from 'crypto';
 import { getQuizQuestions } from '../services/questionService';
 import { calculateScore } from '../services/scoreService';
+import { JsonStore } from '../utils/jsonStore';
 import type { QuizStartRequest, QuizSubmitRequest } from '../types';
 
 const router = Router();
-const prisma = new PrismaClient();
 
 /**
  * POST /api/quiz/start
@@ -20,18 +20,19 @@ router.post('/start', async (req: Request, res: Response) => {
         }
 
         // Create new session
-        const session = await prisma.userSession.create({
-            data: {
-                selectedLanguage: language,
-                totalQuestions: 50,
-            },
+        const sessionId = randomUUID();
+        JsonStore.createSession({
+            id: sessionId,
+            selectedLanguage: language,
+            totalQuestions: 50,
+            createdAt: new Date(),
         });
 
         // Get quiz questions
         const questions = await getQuizQuestions();
 
         res.json({
-            sessionId: session.id,
+            sessionId,
             questions: questions.map((q) => ({
                 id: q.id,
                 contentEn: q.contentEn,

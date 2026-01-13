@@ -27,7 +27,7 @@ function doPost(e) {
         // 1. Ensure Sheets Exist
         const attemptsSheet = ensureSheet(doc, "Test_Attempts", [
             "attempt_id", "timestamp", "student_name", "student_email", "student_phone",
-            "total_score", "max_score", "percentage", "duration_seconds", "cefr_level"
+            "total_score", "max_score", "percentage", "duration_seconds", "cefr_level", "study_plan_summary"
         ]);
 
         const responsesSheet = ensureSheet(doc, "Question_Responses", [
@@ -50,7 +50,8 @@ function doPost(e) {
             contents.score.max,
             (contents.score.total / contents.score.max) * 100,
             contents.attempt.duration,
-            contents.score.cefr || "N/A"
+            contents.score.cefr || "N/A",
+            contents.studyPlan || ""
         ]);
 
         // Append to Question_Responses
@@ -477,4 +478,45 @@ function testUnsubscribeFlow() {
     }
 
     Logger.log("=== TEST COMPLETE ===");
+}
+
+/**
+ * MANUAL TEST: Save a sample row to Sheets
+ * Run this to see how the data looks in your sheet.
+ */
+function testSaveToSheet() {
+    const doc = SpreadsheetApp.getActiveSpreadsheet();
+
+    // 1. Ensure Sheets Exist
+    const attemptsSheet = ensureSheet(doc, "Test_Attempts", [
+        "attempt_id", "timestamp", "student_name", "student_email", "student_phone",
+        "total_score", "max_score", "percentage", "duration_seconds", "cefr_level", "study_plan_summary"
+    ]);
+
+    // 2. Create Sample Data
+    const sampleTopics = [
+        { name: "Present Simple", book: "Unit 1 - Page 10", video: "https://example.com/v1" },
+        { name: "Past Continuous", book: "Unit 5 - Page 42", video: "https://example.com/v2" }
+    ];
+
+    const studyPlanString = sampleTopics.map(t =>
+        `Topic: ${t.name} | Book: ${t.book} | Video: ${t.video}`
+    ).join('\n');
+
+    // 3. Append Row
+    attemptsSheet.appendRow([
+        "manual-test-" + new Date().getTime(),
+        new Date(),
+        "Test User",
+        "test@example.com",
+        "'0901234567",
+        35,
+        50,
+        70,
+        300,
+        "B1",
+        studyPlanString // <--- This is the new field
+    ]);
+
+    Logger.log("Sample row added to 'Test_Attempts'. Check your sheet now!");
 }

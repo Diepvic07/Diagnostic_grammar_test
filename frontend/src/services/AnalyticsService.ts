@@ -30,6 +30,7 @@ export interface QuizResultPayload {
         selectedAnswer: string;
         timeSpent: number; // in ms
     }>;
+    studyPlan?: string; // Formatted summary of weak toics and resources
 }
 
 export const AnalyticsService = {

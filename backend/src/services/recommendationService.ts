@@ -1,7 +1,5 @@
-import { PrismaClient } from '@prisma/client';
+import { JsonStore } from '../utils/jsonStore';
 import type { UserAnswer, WeakTopic, StudyPlanResponse } from '../types';
-
-const prisma = new PrismaClient();
 
 /**
  * Generate personalized study plan based on quiz results
@@ -10,15 +8,15 @@ export async function generateStudyPlan(
     sessionId: string,
     language: 'en' | 'vi' | 'es' | 'zh'
 ): Promise<StudyPlanResponse> {
-    const session = await prisma.userSession.findUnique({
-        where: { id: sessionId },
-    });
+    const session = JsonStore.getSessionById(sessionId);
 
     if (!session || !session.answersData) {
         throw new Error('Session not found or not completed');
     }
 
-    const answersData = session.answersData as unknown as UserAnswer[];
+    const answersData = (typeof session.answersData === 'string'
+        ? JSON.parse(session.answersData)
+        : session.answersData) as UserAnswer[];
 
     // Analyze errors by topic
     const topicErrors = analyzeTopicErrors(answersData);
@@ -33,9 +31,7 @@ export async function generateStudyPlan(
 
     for (let i = 0; i < weakestTopics.length; i++) {
         const topicData = weakestTopics[i];
-        const grammarTopic = await prisma.grammarTopic.findFirst({
-            where: { topicNumber: topicData.topicNumber },
-        });
+        const grammarTopic = JsonStore.getTopicByNumber(topicData.topicNumber);
 
         if (!grammarTopic) continue;
 
@@ -48,7 +44,7 @@ export async function generateStudyPlan(
             totalQuestions: topicData.totalQuestions,
             isPriority: i === 0, // First topic is priority
             studyReference,
-            studyReferenceLink: '#', // TODO: Add actual links
+            studyReferenceLink: '#', // TODO: Add actual links if available in JSON
             practiceTitle: `Watch Lesson: ${grammarTopic.topicName}`,
             practiceLink: grammarTopic.practiceLink,
         });

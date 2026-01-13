@@ -4,18 +4,19 @@ export interface Question {
     grammarTopic: string;
     topicNumber: number;
     answers: AnswerOption[];
+    explanations: Explanation[];
 }
 
 export interface AnswerOption {
     id: string;
-    questionId: string;
+    questionId?: string; // Optional in JSON
     textEn: string;
     isCorrect: boolean;
 }
 
 export interface Explanation {
-    id: string;
-    questionId: string;
+    id?: string; // Optional in JSON
+    questionId?: string; // Optional in JSON
     languageCode: 'en' | 'vi' | 'es' | 'zh';
     explanationText: string;
 }
@@ -25,9 +26,9 @@ export interface UserSession {
     selectedLanguage: 'en' | 'vi' | 'es' | 'zh';
     score?: number;
     totalQuestions: number;
-    answersData?: UserAnswer[];
-    createdAt: Date;
-    completedAt?: Date;
+    answersData?: UserAnswer[] | string; // Support both for backward comapt if needed, but we prefer object
+    createdAt: Date | string; // JSON stores dates as strings
+    completedAt?: Date | string;
 }
 
 export interface UserAnswer {
@@ -103,4 +104,15 @@ export interface StudyPlanResponse {
         description: string;
         link: string;
     };
+}
+
+export interface GrammarTopic {
+    topicNumber: number;
+    topicName: string;
+    minimumQuestions?: number;
+    studyReferenceEn: string;
+    studyReferenceVi: string;
+    studyReferenceEs: string;
+    studyReferenceZh: string;
+    practiceLink: string;
 }
