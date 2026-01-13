@@ -51,12 +51,15 @@ function Main() {
     try {
       // 1. Calculate Score Locally
       // Map answers to UserAnswer type expected by scoring util
-      const questionsData = (await import('./data/questions')).questions;
+      // Use the JSON data source which matches what useQuestions uses
+      const questionsDataRaw = (await import('./data/questions.json')).default;
+      const questionsData = questionsDataRaw as unknown as any[];
 
       const detailedAnswers = answers.map(a => {
         const question = questionsData.find(q => q.id === a.questionId);
-        const selected = question?.answers.find(ans => ans.id === a.selectedAnswerId);
-        const correct = question?.answers.find(ans => ans.isCorrect);
+        const selected = question?.answers.find((ans: any) => ans.id === a.selectedAnswerId);
+        // For JSON data, find correct answer by checking isCorrect property
+        const correct = question?.answers.find((ans: any) => ans.isCorrect);
 
         return {
           questionId: a.questionId,

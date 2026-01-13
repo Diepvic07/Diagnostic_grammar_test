@@ -141,10 +141,7 @@ export const ResultsPage: React.FC<ResultsPageProps> = ({
                         </div>
                     </div>
 
-                    {/* Passing Score Badge */}
-                    <div className="passing-score-badge">
-                        {t('results.passingScore')}
-                    </div>
+
 
                     {/* Retake Button */}
                     <button className="btn-retake" onClick={handleRetake} style={{ marginTop: '10px' }}>
@@ -165,6 +162,29 @@ export const ResultsPage: React.FC<ResultsPageProps> = ({
                             ? result.questionText.substring(0, 45) + '...'
                             : result.questionText;
 
+                        // Helper to render question with filled answer for correct ones
+                        const renderQuestionWithAnswer = () => {
+                            // Regex to find underscores (3 or more)
+                            const parts = result.questionText.split(/_{3,}/);
+                            if (parts.length > 1) {
+                                return (
+                                    <span>
+                                        {parts.map((part, i) => (
+                                            <React.Fragment key={i}>
+                                                {part}
+                                                {i < parts.length - 1 && (
+                                                    <span className="font-bold text-primary dark:text-primary-light">
+                                                        {result.correctAnswer}
+                                                    </span>
+                                                )}
+                                            </React.Fragment>
+                                        ))}
+                                    </span>
+                                );
+                            }
+                            return result.questionText;
+                        };
+
                         return (
                             <div key={result.id} className="answer-review-container">
                                 {isExpanded ? (
@@ -178,7 +198,9 @@ export const ResultsPage: React.FC<ResultsPageProps> = ({
                                             <div className="answer-card-header-left">
                                                 <div className={`answer-card-icon-container ${result.isCorrect ? 'answer-card-collapsed--correct' : 'answer-card-collapsed--incorrect'}`}>
                                                     <div className="answer-card-icon">
-                                                        {result.isCorrect ? '✓' : '✕'}
+                                                        <span className="material-symbols-outlined" style={{ fontSize: '20px', fontWeight: 'bold' }}>
+                                                            {result.isCorrect ? 'check' : 'close'}
+                                                        </span>
                                                     </div>
                                                 </div>
                                                 <div className="answer-card-meta-row">
@@ -190,7 +212,7 @@ export const ResultsPage: React.FC<ResultsPageProps> = ({
                                                     </span>
                                                 </div>
                                             </div>
-                                            <span className="expand-icon">⌃</span>
+                                            <span className="material-symbols-outlined text-[#dbe2e6] cursor-pointer">expand_less</span>
                                         </div>
 
                                         {/* Content */}
@@ -205,7 +227,7 @@ export const ResultsPage: React.FC<ResultsPageProps> = ({
                                                     </span>
                                                     <div className="answer-box">
                                                         <span>{result.userAnswer}</span>
-                                                        <span className="answer-icon">✕</span>
+                                                        <span className="material-symbols-outlined answer-icon">cancel</span>
                                                     </div>
                                                 </div>
                                             )}
@@ -217,7 +239,7 @@ export const ResultsPage: React.FC<ResultsPageProps> = ({
                                                 </span>
                                                 <div className="answer-box">
                                                     <span>{result.correctAnswer}</span>
-                                                    <span className="answer-icon">✓</span>
+                                                    <span className="material-symbols-outlined answer-icon">check_circle</span>
                                                 </div>
                                             </div>
 
@@ -246,7 +268,9 @@ export const ResultsPage: React.FC<ResultsPageProps> = ({
                                         <div className="answer-card-left">
                                             <div className={`answer-card-icon-container ${result.isCorrect ? 'answer-card-collapsed--correct' : 'answer-card-collapsed--incorrect'}`}>
                                                 <div className="answer-card-icon">
-                                                    {result.isCorrect ? '✓' : '✕'}
+                                                    <span className="material-symbols-outlined" style={{ fontSize: '20px', fontWeight: 'bold' }}>
+                                                        {result.isCorrect ? 'check' : 'close'}
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div className="answer-card-text-content">
@@ -259,11 +283,11 @@ export const ResultsPage: React.FC<ResultsPageProps> = ({
                                                     </span>
                                                 </div>
                                                 <div className="answer-card-preview">
-                                                    {truncatedQuestion}
+                                                    {isExpanded ? result.questionText : (result.isCorrect ? renderQuestionWithAnswer() : truncatedQuestion)}
                                                 </div>
                                             </div>
                                         </div>
-                                        <span className="expand-icon">⌄</span>
+                                        <span className="material-symbols-outlined text-[#dbe2e6]">expand_more</span>
                                     </div>
                                 )}
                             </div>
