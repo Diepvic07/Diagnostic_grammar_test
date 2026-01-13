@@ -32,25 +32,27 @@ We deploy the backend first because the frontend needs the backend's URL.
 
 ---
 
-## Part 2: Deploy Frontend (Vercel)
+## Part 2: Deploy Frontend (GitHub Pages)
 
-1.  **Sign up/Login** to [Vercel.com](https://vercel.com/).
-2.  Click **Add New...** -> **Project**.
-3.  Import your `Diagnostic_Grammar_Test` repository.
-4.  Configure the project:
-    *   **Framework Preset**: `Vite` (should be auto-detected).
-    *   **Root Directory**: Click `Edit` and select `frontend`.
-    *   **Build Command**: `npm run build` (Default).
-    *   **Environment Variables**:
-        *   Key: `VITE_API_BASE_URL`
-        *   Value: `https://your-backend-url.onrender.com/api` (Paste the URL from Part 1 and append `/api`).
-5.  Click **Deploy**.
+We use GitHub Actions to automatically deploy the frontend whenever you push to `main`.
 
----
+1.  **Backend Warning**: GitHub Pages **ONLY** hosts the static frontend. It **CANNOT** run your Node.js backend. You **MUST** still deploy the backend to Render (Step 1) for the quiz to work.
+2.  **Configuration**:
+    *   I have already created `.github/workflows/deploy.yml` for you.
+    *   I have updated `vite.config.ts` to use `/Diagnostic_grammar_test/` as the base path.
+3.  **Activate GitHub Pages**:
+    *   Go to your GitHub Repository Settings.
+    *   Navigate to **Pages** (sidebar).
+    *   Under "Build and deployment", select **Source**: `GitHub Actions`.
+    *   (The workflow will run automatically on your next push).
+4.  **Connect Backend**:
+    *   You still need to tell the frontend where the Render backend is.
+    *   In a typical Vite + GitHub Pages setup, you cannot use `.env` files dynamically at runtime without rebuilding.
+    *   **Action**: You should hardcode the Render URL in `frontend/src/services/api.ts` OR setup a "Repository Variable" in GitHub Settings -> Secrets and Variables -> Actions -> Variables: `VITE_API_BASE_URL` = `https://grammar-test-backend.onrender.com/api`.
+    *   (The Action uses `npm run build`, so it will bake this variable in if set in GitHub secrets/vars).
 
 ## Part 3: Verify
 
-1.  Open the **Frontend Deployment URL** provided by Vercel.
-2.  Click "Start Quiz".
-3.  If the backend is sleeping, it might take a moment to load the first question.
-4.  Complete a quick test path to verify integration.
+1.  Wait for the "Deploy Frontend to GitHub Pages" action to finish in the **Actions** tab.
+2.  Visit the URL provided by GitHub (e.g., `https://diepvic07.github.io/Diagnostic_grammar_test/`).
+3.  Test the quiz.
