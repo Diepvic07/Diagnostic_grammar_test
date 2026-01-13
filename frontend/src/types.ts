@@ -4,6 +4,10 @@ export interface Question {
     grammarTopic: string;
     topicNumber: number;
     answers: AnswerOption[];
+    explanations?: Array<{
+        languageCode: string;
+        explanationText: string;
+    }>;
 }
 
 export interface AnswerOption {
