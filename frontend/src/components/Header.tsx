@@ -9,7 +9,7 @@ export const Header: React.FC = () => {
                 <div className="header-content">
                     <div className="logo">
                         <div className="logo-icon-container">
-                            <img src="/ejoy-logo.png" alt="eJOY Logo" className="logo-icon-img" />
+                            <img src={`${import.meta.env.BASE_URL}ejoy-logo.png`} alt="eJOY Logo" className="logo-icon-img" />
                         </div>
                         <span className="logo-text">eJOY English</span>
                     </div>

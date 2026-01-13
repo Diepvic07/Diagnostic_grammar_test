@@ -12,8 +12,11 @@
     padding: 16px 0;
     position: sticky;
     top: 0;
-    z-index: 50;
+    z-index: 1000;
+    /* High z-index to keep dropdown on top */
     border-bottom: 1px solid var(--color-border);
+    overflow: visible;
+    /* Ensure dropdowns are not clipped */
 }
 
 .header-content {

@@ -62,7 +62,7 @@ export const StudyPlanContent: React.FC<StudyPlanContentProps> = ({ weakTopics }
                     className="recommendation-card recommendation-card--book"
                 >
                     <img
-                        src="/grammar-ielts-cover.jpg"
+                        src={`${import.meta.env.BASE_URL}grammar-ielts-cover.jpg`}
                         alt="Grammar for IELTS Book Cover"
                         className="recommendation-card__image"
                     />
@@ -86,7 +86,7 @@ export const StudyPlanContent: React.FC<StudyPlanContentProps> = ({ weakTopics }
                     className="recommendation-card recommendation-card--ejoy"
                 >
                     <img
-                        src="/epic-ejoy.svg"
+                        src={`${import.meta.env.BASE_URL}epic-ejoy.svg`}
                         alt="eJOY Web Interface"
                         className="recommendation-card__image"
                     />
