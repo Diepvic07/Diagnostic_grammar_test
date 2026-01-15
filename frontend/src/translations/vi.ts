@@ -46,7 +46,33 @@ export const vi: Translation = {
         futurePerfect: "Tương lai hoàn thành",
         presentSimple: "Hiện tại đơn",
         passiveVoice: "Câu bị động",
-        conditionals: "Câu điều kiện"
+        conditionals: "Câu điều kiện",
+        // New topics
+        presentTenses: "Các thì hiện tại",
+        pastTenses1: "Các thì quá khứ 1",
+        presentPerfect: "Hiện tại hoàn thành",
+        pastTenses2: "Các thì quá khứ 2",
+        future1: "Tương lai 1",
+        future2: "Tương lai 2",
+        countableAndUncountableNouns: "Danh từ đếm được và không đếm được",
+        referringToNouns: "Cách dùng danh từ",
+        pronounsAndReferencing: "Đại từ và tham chiếu",
+        adjectivesAndAdverbs: "Tính từ và trạng từ",
+        comparingThings: "So sánh",
+        theNounPhrase: "Cụm danh từ",
+        modals1: "Động từ khuyết thiếu 1",
+        modals2: "Động từ khuyết thiếu 2",
+        reportedSpeech: "Câu tường thuật",
+        verbVerbPatterns: "Cấu trúc động từ",
+        likelihoodBasedOnConditions1: "Câu điều kiện & Khả năng 1",
+        likelihoodBasedOnConditions2: "Câu điều kiện & Khả năng 2",
+        prepositions: "Giới từ",
+        relativeClauses: "Mệnh đề quan hệ",
+        waysOfOrganisingTexts: "Cách tổ chức văn bản",
+        thePassive: "Câu bị động",
+        linkingIdeas: "Liên kết ý tưởng",
+        showingYourPositionInAText: "Thể hiện quan điểm trong văn bản",
+        nominalisationInWrittenEnglish: "Danh từ hóa trong tiếng Anh viết"
     },
 
     // Study Plan Page
@@ -60,13 +86,13 @@ export const vi: Translation = {
         ejoyTitle: "Luyện Tập Trên eJOY",
         weakTopics: "CHỦ ĐỀ NGỮ PHÁP YẾU",
         priority: "ƯU TIÊN",
-        studyReference: "TÀI LIỆU HỌC",
+        studyReference: "Sách Grammar for IELTS",
         studyReferenceDefault: "Hướng dẫn ngữ pháp: {{topic}}",
         studyReferenceDetail: "Hướng dẫn ngữ pháp - {{topic}}",
         practiceOnEjoy: "LUYỆN TẬP TRÊN EJOY",
         practiceButton: "Luyện {{topic}} với eJOY",
         continue: "Tiếp Tục",
-        continueButton: "Tiếp Tục"
+        continueButton: "Gửi kế hoạch học qua email"
     },
 
     // Email Success Page
@@ -90,14 +116,14 @@ export const vi: Translation = {
         onlyLeft: "Chỉ còn 100 suất!",
         limitedOffer: "ƯU ĐÃI CÓ HẠN",
         emailTitle: "Gửi Kết Quả & Nhận Quà 7 Ngày",
-        emailDesc: "Nhận bản tóm tắt và mã quà tặng học video không giới hạn.",
+        emailDesc: "Nhận kế hoạch học tập chi tiết và mã quà tặng cho các bài học video.",
         fullName: "Họ và Tên",
         namePlaceholder: "Nhập tên của bạn",
         emailAddr: "Địa chỉ Email",
         emailPlaceholder: "name@example.com",
         phoneNum: "Số điện thoại",
         phonePlaceholder: "+84 901 234 567",
-        submitBtn: "Gửi Mã Quà Tặng",
+        submitBtn: "Gửi kế hoạch & mã học thử",
         sending: "Đang gửi...",
         privacy: "Chúng tôi cam kết bảo mật thông tin của bạn.",
         phoneError: "Vui lòng nhập số điện thoại hợp lệ"

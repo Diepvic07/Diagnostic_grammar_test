@@ -44,7 +44,33 @@ export const en = {
         futurePerfect: "Future Perfect",
         presentSimple: "Present Simple",
         passiveVoice: "Passive Voice",
-        conditionals: "Conditionals"
+        conditionals: "Conditionals",
+        // New topics from grammar_resources.json
+        presentTenses: "Present tenses",
+        pastTenses1: "Past tenses 1",
+        presentPerfect: "Present perfect",
+        pastTenses2: "Past tenses 2",
+        future1: "Future 1",
+        future2: "Future 2",
+        countableAndUncountableNouns: "Countable and uncountable nouns",
+        referringToNouns: "Referring to nouns",
+        pronounsAndReferencing: "Pronouns and referencing",
+        adjectivesAndAdverbs: "Adjectives and adverbs",
+        comparingThings: "Comparing things",
+        theNounPhrase: "The noun phrase",
+        modals1: "Modals 1",
+        modals2: "Modals 2",
+        reportedSpeech: "Reported speech",
+        verbVerbPatterns: "Verb + verb patterns",
+        likelihoodBasedOnConditions1: "Likelihood based on conditions 1",
+        likelihoodBasedOnConditions2: "Likelihood based on conditions 2",
+        prepositions: "Prepositions",
+        relativeClauses: "Relative clauses",
+        waysOfOrganisingTexts: "Ways of organising texts",
+        thePassive: "The passive",
+        linkingIdeas: "Linking ideas",
+        showingYourPositionInAText: "Showing your position in a text",
+        nominalisationInWrittenEnglish: "Nominalisation in written English"
     },
 
     // Dynamic strings
@@ -58,13 +84,13 @@ export const en = {
         ejoyTitle: "Practice on eJOY",
         weakTopics: "WEAK GRAMMAR TOPICS",
         priority: "PRIORITY",
-        studyReference: "STUDY REFERENCE",
+        studyReference: "Grammar for IELTS book",
         studyReferenceDefault: "Grammar Guide: {{topic}}",
         studyReferenceDetail: "Grammar Guide - {{topic}}",
         practiceOnEjoy: "PRACTICE ON EJOY",
         practiceButton: "Practice {{topic}} with eJOY",
         continue: "Continue",
-        continueButton: "Continue"
+        continueButton: "Email me my plan"
     },
 
     // Email Success Page
@@ -88,14 +114,14 @@ export const en = {
         onlyLeft: "Only 100 left!",
         limitedOffer: "LIMITED OFFER",
         emailTitle: "Email Results & Get 7-Day Gift",
-        emailDesc: "Receive your summary and a gift code for immersive video lessons.",
+        emailDesc: "Receive your full study plan and a gift code for immersive video lessons.",
         fullName: "Full Name",
         namePlaceholder: "Enter your name",
         emailAddr: "Email Address",
         emailPlaceholder: "name@example.com",
         phoneNum: "Phone Number",
         phonePlaceholder: "+1 (555) 000-0000",
-        submitBtn: "Send My Gift Code",
+        submitBtn: "Send study plan & gift code",
         sending: "Sending...",
         privacy: "We'll never share your details with third parties.",
         phoneError: "Please enter a valid phone number"

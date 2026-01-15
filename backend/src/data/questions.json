@@ -2169,7 +2169,7 @@
     "answers": [
       {
         "id": "77edbe6c-3c33-4c38-acaf-71cc2ce16dfa",
-        "textEn": "Unfortunately",
+        "textEn": "Unfortunately,",
         "isCorrect": true
       },
       {
@@ -8793,7 +8793,7 @@
     "answers": [
       {
         "id": "307dbb6b-42e1-44ed-8f84-515ed0c08d28",
-        "textEn": "Unfortunately",
+        "textEn": "Unfortunately,",
         "isCorrect": true
       },
       {
@@ -8839,7 +8839,7 @@
     "answers": [
       {
         "id": "ace9a853-b332-47b2-be35-1feae6bb1463",
-        "textEn": "Sadly",
+        "textEn": "Sadly,",
         "isCorrect": true
       },
       {
@@ -8885,7 +8885,7 @@
     "answers": [
       {
         "id": "361ae218-8cb7-4058-8a17-3ab4c99a7a57",
-        "textEn": "Regrettably",
+        "textEn": "Regrettably,",
         "isCorrect": true
       },
       {

@@ -1448,6 +1448,22 @@ box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), shadow-blue-500/30;
   - To: transparent
 - Padding-top: 48px (pt-12, creates fade effect)
 
+### 2.4.1 Video Recommendation Algorithm
+
+To ensure users always receive relevant video practice materials, the system uses a 3-tier fallback logic when selecting videos for a grammar topic:
+
+1.  **Strict Match (Primary)**:
+    *   Search for videos with `level` equal to `User Level` or `User Level + 1`.
+    *   *Goal*: Provide content that matches or slightly challenges the user.
+
+2.  **Expanded Range (Secondary)**:
+    *   If no videos are found in the primary range, expand the search to `User Level - 1` and `User Level + 2`.
+    *   *Goal*: Provide content that is still relatively close to the user's proficiency.
+
+3.  **Best Effort (Tertiary)**:
+    *   If no videos are found in the expanded range, sort all available videos by their absolute distance to the `User Level` and return the top 3 closest matches.
+    *   *Goal*: Ensure the user always has *some* content to practice with, rather than an empty list.
+
 **Continue Button**
 - Width: 100%
 - Height: 56px (h-14)

@@ -49,32 +49,65 @@ export const StudyPlanContent: React.FC<StudyPlanContentProps> = ({ weakTopics, 
         let relevantVideos: VideoResource[] = [];
 
         if (resource?.videos) {
-            // Filter videos: Same level (i) or i+1
-            // If userLevel is provided, use it. Otherwise default to showing all or a subset?
-            // Prompt says: "make sure those video lessons are at the same or higher level i+1 level"
-            // We interpret this as [userLevel, userLevel + 1]
+            // Strategy 1: Strict Range [userLevel, userLevel + 1]
+            relevantVideos = resource.videos.filter(v =>
+                v.level >= userLevel && v.level <= userLevel + 1
+            );
 
-            relevantVideos = resource.videos.filter(v => {
-                // Keep videos that are >= userLevel AND <= userLevel + 1
-                // Also be lenient if no videos match?
-                return v.level >= userLevel && v.level <= userLevel + 1;
-            });
-
-            // Fallback: If no videos in range, maybe show the closest ones or just the first few?
-            // Let's stick to the requirement strictness first. If empty, maybe show all >= userLevel?
+            // Strategy 2: Expanded Range [userLevel - 1, userLevel + 2]
             if (relevantVideos.length === 0) {
-                // Try relaxing to just >= userLevel
-                relevantVideos = resource.videos.filter(v => v.level >= userLevel).slice(0, 3);
+                relevantVideos = resource.videos.filter(v =>
+                    v.level >= userLevel - 1 && v.level <= userLevel + 2
+                );
             }
-            if (relevantVideos.length === 0) {
-                // If still empty, just take the first few
-                relevantVideos = resource.videos.slice(0, 3);
+
+            // Strategy 3: Best Effort (Closest Level)
+            if (relevantVideos.length === 0 && resource.videos.length > 0) {
+                // Sort by distance to userLevel, then by level (descending preference or just stability)
+                relevantVideos = [...resource.videos]
+                    .sort((a, b) => Math.abs(a.level - userLevel) - Math.abs(b.level - userLevel))
+                    .slice(0, 3);
             }
         }
 
+        // Helper to convert topic string to translation key (camelCase)
+        const getTopicTranslationKey = (rawTopic: string): string => {
+            const map: Record<string, string> = {
+                'Present tenses': 'presentTenses',
+                'Past tenses 1': 'pastTenses1',
+                'Present perfect': 'presentPerfect',
+                'Past tenses 2': 'pastTenses2',
+                'Future 1': 'future1',
+                'Future 2': 'future2',
+                'Countable and uncountable nouns': 'countableAndUncountableNouns',
+                'Referring to nouns': 'referringToNouns',
+                'Pronouns and referencing': 'pronounsAndReferencing',
+                'Adjectives and adverbs': 'adjectivesAndAdverbs',
+                'Comparing things': 'comparingThings',
+                'The noun phrase': 'theNounPhrase',
+                'Modals 1': 'modals1',
+                'Modals 2': 'modals2',
+                'Reported speech': 'reportedSpeech',
+                'Verb + verb patterns': 'verbVerbPatterns',
+                'Likelihood based on conditions 1': 'likelihoodBasedOnConditions1',
+                'Likelihood based on conditions 2': 'likelihoodBasedOnConditions2',
+                'Prepositions': 'prepositions',
+                'Relative clauses': 'relativeClauses',
+                'Ways of organising texts': 'waysOfOrganisingTexts',
+                'The passive': 'thePassive',
+                'Linking ideas': 'linkingIdeas',
+                'Showing your position in a text': 'showingYourPositionInAText',
+                'Nominalisation in written English': 'nominalisationInWrittenEnglish'
+            };
+            return map[rawTopic] || rawTopic; // Fallback to raw if not found
+        };
+
+        const translationKey = getTopicTranslationKey(topic.topicName);
+        const translatedTopicName = t(`topics.${translationKey}` as any); // Type assertion if needed, or update types
+
         return {
-            topicName: topic.topicName,
-            studyReference: resource?.bookDetails || t('studyPlan.studyReferenceDefault', { topic: topic.topicName }),
+            topicName: translatedTopicName !== `topics.${translationKey}` ? translatedTopicName : topic.topicName,
+            studyReference: resource?.bookDetails || t('studyPlan.studyReferenceDefault', { topic: translatedTopicName }),
             videos: relevantVideos
         };
     });

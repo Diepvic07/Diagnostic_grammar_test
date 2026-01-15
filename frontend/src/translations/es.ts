@@ -46,7 +46,33 @@ export const es: Translation = {
         futurePerfect: "Futuro Perfecto",
         presentSimple: "Presente Simple",
         passiveVoice: "Voz Pasiva",
-        conditionals: "Condicionales"
+        conditionals: "Condicionales",
+        // New topics
+        presentTenses: "Tiempos presentes",
+        pastTenses1: "Tiempos pasados 1",
+        presentPerfect: "Pretérito perfecto",
+        pastTenses2: "Tiempos pasados 2",
+        future1: "Futuro 1",
+        future2: "Futuro 2",
+        countableAndUncountableNouns: "Sustantivos contables e incontables",
+        referringToNouns: "Referencia a sustantivos",
+        pronounsAndReferencing: "Pronombres y referencia",
+        adjectivesAndAdverbs: "Adjetivos y adverbios",
+        comparingThings: "Comparaciones",
+        theNounPhrase: "El sintagma nominal",
+        modals1: "Verbos modales 1",
+        modals2: "Verbos modales 2",
+        reportedSpeech: "Estilo indirecto",
+        verbVerbPatterns: "Patrones de verbos",
+        likelihoodBasedOnConditions1: "Probabilidad y condiciones 1",
+        likelihoodBasedOnConditions2: "Probabilidad y condiciones 2",
+        prepositions: "Preposiciones",
+        relativeClauses: "Oraciones de relativo",
+        waysOfOrganisingTexts: "Formas de organizar textos",
+        thePassive: "La voz pasiva",
+        linkingIdeas: "Conectar ideas",
+        showingYourPositionInAText: "Mostrar su posición en un texto",
+        nominalisationInWrittenEnglish: "Nominalización en inglés escrito"
     },
 
     // Study Plan Page
@@ -60,12 +86,13 @@ export const es: Translation = {
         ejoyTitle: "Practica en eJOY",
         weakTopics: "TEMAS DE GRAMÁTICA DÉBILES",
         priority: "PRIORIDAD",
-        studyReference: "REFERENCIA DE ESTUDIO",
+        studyReference: "Libro Grammar for IELTS",
         studyReferenceDefault: "Grammar Guide: {{topic}}",
         studyReferenceDetail: "Guía de gramática - {{topic}}",
         practiceOnEjoy: "PRACTICA EN EJOY",
         practiceButton: "Practicar {{topic}} con eJOY",
-        continue: "Continuar"
+        continue: "Continuar",
+        continueButton: "Enviar a mi correo"
     },
 
     // Email Success Page
@@ -89,14 +116,14 @@ export const es: Translation = {
         onlyLeft: "Only 100 left!",
         limitedOffer: "LIMITED OFFER",
         emailTitle: "Email Results & Get 7-Day Gift",
-        emailDesc: "Receive your summary and a gift code for immersive video lessons.",
+        emailDesc: "Recibe tu plan de estudio completo y un código de regalo para lecciones en video.",
         fullName: "Full Name",
         namePlaceholder: "Enter your name",
         emailAddr: "Email Address",
         emailPlaceholder: "name@example.com",
         phoneNum: "Phone Number",
         phonePlaceholder: "+1 (555) 000-0000",
-        submitBtn: "Send My Gift Code",
+        submitBtn: "Enviar plan y código de regalo",
         sending: "Sending...",
         privacy: "We'll never share your details with third parties.",
         phoneError: "Please enter a valid phone number"

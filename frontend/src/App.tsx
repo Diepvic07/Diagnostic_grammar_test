@@ -137,6 +137,7 @@ function Main() {
     // Check for "topics" in URL (Stateless Sharing)
     const params = new URLSearchParams(window.location.search);
     const topicsParam = params.get('topics');
+
     if (topicsParam) {
       // topics=Present tenses,Past tenses 1
       const topicNames = topicsParam.split(',');

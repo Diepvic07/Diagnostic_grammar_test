@@ -46,7 +46,33 @@ export const zh: Translation = {
         futurePerfect: "将来完成时",
         presentSimple: "一般现在时",
         passiveVoice: "被动语态",
-        conditionals: "条件句"
+        conditionals: "条件句",
+        // New topics
+        presentTenses: "现在时",
+        pastTenses1: "过去时 1",
+        presentPerfect: "现在完成时",
+        pastTenses2: "过去时 2",
+        future1: "将来时 1",
+        future2: "将来时 2",
+        countableAndUncountableNouns: "可数和不可数名词",
+        referringToNouns: "名词指代",
+        pronounsAndReferencing: "代词和指代",
+        adjectivesAndAdverbs: "形容词和副词",
+        comparingThings: "比较",
+        theNounPhrase: "名词短语",
+        modals1: "情态动词 1",
+        modals2: "情态动词 2",
+        reportedSpeech: "间接引语",
+        verbVerbPatterns: "动词模式",
+        likelihoodBasedOnConditions1: "基于条件的可能性 1",
+        likelihoodBasedOnConditions2: "基于条件的可能性 2",
+        prepositions: "介词",
+        relativeClauses: "定语从句",
+        waysOfOrganisingTexts: "组织文本的方式",
+        thePassive: "被动语态",
+        linkingIdeas: "连接观点",
+        showingYourPositionInAText: "在文本中表明立场",
+        nominalisationInWrittenEnglish: "书面英语中的名词化"
     },
 
     // Study Plan Page
@@ -60,12 +86,13 @@ export const zh: Translation = {
         ejoyTitle: "在 eJOY 上练习",
         weakTopics: "薄弱的语法主题",
         priority: "优先",
-        studyReference: "学习参考",
+        studyReference: "《Grammar for IELTS》教材",
         studyReferenceDefault: "语法指南: {{topic}}",
         studyReferenceDetail: "语法指南 - {{topic}}",
         practiceOnEjoy: "在 EJOY 上练习",
         practiceButton: "练习 {{topic}}（在 eJOY 上）",
-        continue: "继续"
+        continue: "继续",
+        continueButton: "邮件获取学习计划"
     },
 
     // Email Success Page
@@ -89,14 +116,14 @@ export const zh: Translation = {
         onlyLeft: "Only 100 left!",
         limitedOffer: "LIMITED OFFER",
         emailTitle: "Email Results & Get 7-Day Gift",
-        emailDesc: "Receive your summary and a gift code for immersive video lessons.",
+        emailDesc: "获取完整的学习计划及沉浸式视频课程礼品码。",
         fullName: "Full Name",
         namePlaceholder: "Enter your name",
         emailAddr: "Email Address",
         emailPlaceholder: "name@example.com",
         phoneNum: "Phone Number",
         phonePlaceholder: "+1 (555) 000-0000",
-        submitBtn: "Send My Gift Code",
+        submitBtn: "发送学习计划和礼品码",
         sending: "Sending...",
         privacy: "We'll never share your details with third parties.",
         phoneError: "Please enter a valid phone number"
